@@ -15,6 +15,15 @@ app.get("/database", function (req, res) {
   res.send(database);
 });
 
+app.post("/products", function (req, res) {
+  const title = req.body.title;
+  database.push({
+    id: database.length + 1,
+    title,
+  });
+  res.send("값 추가가 정상적으로 되었슴");
+});
+
 app.listen(3000, () => {
   console.log("server On !!!!!!");
 });
