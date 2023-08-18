@@ -15,6 +15,14 @@ app.get("/database", function (req, res) {
   res.send(database);
 });
 
+app.get("/database/:id", function (req, res) {
+  const id = req.params.id;
+  const data = database.find((item) => {
+    return item.id === Number(id);
+  });
+  res.send(data);
+});
+
 app.post("/products", function (req, res) {
   const title = req.body.title;
   database.push({
