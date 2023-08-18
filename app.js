@@ -7,6 +7,9 @@ const database = [
   { id: 3, title: "글3" },
 ];
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.get("/database", function (req, res) {
   //   res.send("Hello World !!! 시작");
   res.send(database);
