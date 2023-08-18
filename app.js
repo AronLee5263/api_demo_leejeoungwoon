@@ -32,6 +32,14 @@ app.post("/products", function (req, res) {
   res.send("값 추가가 정상적으로 되었슴");
 });
 
+app.put("/product/:id", function (req, res) {
+  const id = req.body.id;
+  const title = req.body.title;
+  database[id - 1].title = title;
+
+  res.send("값 추가가 정상적으로 되었슴");
+});
+
 app.listen(3000, () => {
   console.log("server On !!!!!!");
 });
