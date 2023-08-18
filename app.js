@@ -29,7 +29,7 @@ app.post("/products", function (req, res) {
     id: database.length + 1,
     title,
   });
-  res.send("값 추가가 정상적으로 되었슴");
+  res.send("값 추가가 성공 ! ");
 });
 
 app.put("/product/:id", function (req, res) {
@@ -37,7 +37,14 @@ app.put("/product/:id", function (req, res) {
   const title = req.body.title;
   database[id - 1].title = title;
 
-  res.send("값 추가가 정상적으로 되었슴");
+  res.send("값 수정이 정상적으로 완료되었습니다");
+});
+
+app.delete("/product/:id", function (req, res) {
+  const id = req.body.id;
+  database.splice(id - 1, 1);
+
+  res.send("값 삭제를 성공했습니다");
 });
 
 app.listen(3000, () => {
