@@ -32,7 +32,7 @@ app.post("/database", function (req, res) {
   res.send("값 추가가 성공 ! ");
 });
 
-app.put("/database/:id", function (req, res) {
+app.put("/database", function (req, res) {
   const id = req.body.id;
   const title = req.body.title;
   database[id - 1].title = title;
@@ -40,7 +40,7 @@ app.put("/database/:id", function (req, res) {
   res.send("값 수정이 정상적으로 완료되었습니다");
 });
 
-app.delete("/database/:id", function (req, res) {
+app.delete("/database", function (req, res) {
   const id = req.body.id;
   database.splice(id - 1, 1);
 
