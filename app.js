@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/database", async function (req, res) {
   //   res.send("Hello World !!! 시작");
-  const [rows, fields] = await connection.execute("SELECT * FROM user");
+  const [rows, fields] = await connection.execute(`SELECT * FROM user`);
   console.log("rows: ", rows);
   res.send(rows);
 });
@@ -29,12 +29,12 @@ app.get("/database/:id", function (req, res) {
   res.send(data);
 });
 
-app.post("/database", function (req, res) {
-  const title = req.body.title;
-  database.push({
-    id: database.length + 1,
-    title,
-  });
+app.post("/database", async function (req, res) {
+  const { name, age, content } = req.body;
+  const [rows, fields] = await connection.execute(
+    `INSERT INTO user(name, age, content) VALUES('${name}', ${age}, '${content}')`
+  );
+
   res.send("값 추가가 성공 ! ");
 });
 
