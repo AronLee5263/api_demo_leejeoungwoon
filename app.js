@@ -1,5 +1,14 @@
 const express = require("express");
 const app = express();
+const mysql = require("mysql2/promise");
+
+// create the connection to database
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  database: "myapp",
+  password: "root",
+});
 
 const database = [
   { id: 1, title: "글1" },
@@ -10,9 +19,11 @@ const database = [
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/database", function (req, res) {
+app.get("/database", async function (req, res) {
   //   res.send("Hello World !!! 시작");
-  res.send(database);
+  const [rows, fields] = await connection.execute("SELECT * FROM user");
+  console.log("rows: ", rows);
+  res.send(rows);
 });
 
 app.get("/database/:id", function (req, res) {
