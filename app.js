@@ -40,10 +40,14 @@ app.post("/database", async function (req, res) {
   res.send("값 추가가 성공 ! ");
 });
 
-app.put("/database", function (req, res) {
-  const id = req.body.id;
-  const title = req.body.title;
-  database[id - 1].title = title;
+app.put("/database", async function (req, res) {
+  const { id, name, age, content } = req.body;
+  const [rows, fields] = await connection.execute(`UPDATE user SET name=?, age=?, content=? WHERE id=?`, [
+    name,
+    age,
+    content,
+    id,
+  ]);
 
   res.send("값 수정이 정상적으로 완료되었습니다");
 });
