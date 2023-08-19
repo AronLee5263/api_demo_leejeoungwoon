@@ -25,7 +25,7 @@ app.get("/database/:id", async function (req, res) {
   const id = req.params.id;
   const [rows, fields] = await connection.execute(`SELECT * FROM user WHERE id=?`, [id]);
 
-  res.send(rows);
+  res.send(rows[0]);
 });
 
 app.post("/database", async function (req, res) {
