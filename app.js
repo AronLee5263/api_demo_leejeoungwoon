@@ -10,34 +10,30 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/database", async function (req, res) {
   //   res.send("Hello World !!! 시작");
-  const [rows, fields] = await connection.execute(`SELECT * FROM user`);
+  const [rows, fields] = await connection.execute(`SELECT * FROM posts`);
   console.log("rows: ", rows);
   res.send(rows);
 });
 
 app.get("/database/:id", async function (req, res) {
   const id = req.params.id;
-  const [rows, fields] = await connection.execute(`SELECT * FROM user WHERE id=?`, [id]);
+  const [rows, fields] = await connection.execute(`SELECT * FROM posts WHERE id=?`, [id]);
 
   res.send(rows[0]);
 });
 
 app.post("/database", async function (req, res) {
-  const { name, age, content } = req.body;
-  const [rows, fields] = await connection.execute(`INSERT INTO user(name, age, content) VALUES(?,?,?)`, [
-    name,
-    age,
-    content,
-  ]);
+  const { title, content } = req.body;
+  const [rows, fields] = await connection.execute(`INSERT INTO posts(title, content) VALUES(?,?)`, [title, content]);
 
   res.send("값 추가가 성공 ! ");
 });
 
 app.put("/database", async function (req, res) {
-  const { id, name, age, content } = req.body;
-  const [rows, fields] = await connection.execute(`UPDATE user SET name=?, age=?, content=? WHERE id=?`, [
-    name,
-    age,
+  const { id, title, likes, content } = req.body;
+  const [rows, fields] = await connection.execute(`UPDATE posts SET title=?, likes=?, content=? WHERE id=?`, [
+    title,
+    likes,
     content,
     id,
   ]);
@@ -47,7 +43,7 @@ app.put("/database", async function (req, res) {
 
 app.delete("/database/:id", async function (req, res) {
   const id = req.params.id;
-  const [rows, fields] = await connection.execute(`DELETE FROM user WHERE id=?`, [id]);
+  const [rows, fields] = await connection.execute(`DELETE FROM posts WHERE id=?`, [id]);
 
   res.send("값 삭제를 성공했습니다");
 });
