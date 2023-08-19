@@ -21,12 +21,11 @@ app.get("/database", async function (req, res) {
   res.send(rows);
 });
 
-app.get("/database/:id", function (req, res) {
+app.get("/database/:id", async function (req, res) {
   const id = req.params.id;
-  const data = database.find((item) => {
-    return item.id === Number(id);
-  });
-  res.send(data);
+  const [rows, fields] = await connection.execute(`SELECT * FROM user WHERE id=?`, [id]);
+
+  res.send(rows);
 });
 
 app.post("/database", async function (req, res) {
@@ -52,9 +51,9 @@ app.put("/database", async function (req, res) {
   res.send("값 수정이 정상적으로 완료되었습니다");
 });
 
-app.delete("/database/:id", function (req, res) {
+app.delete("/database/:id", async function (req, res) {
   const id = req.params.id;
-  database.splice(id - 1, 1);
+  const [rows, fields] = await connection.execute(`DELETE FROM user WHERE id=?`, [id]);
 
   res.send("값 삭제를 성공했습니다");
 });
