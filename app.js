@@ -40,8 +40,8 @@ app.put("/database", function (req, res) {
   res.send("값 수정이 정상적으로 완료되었습니다");
 });
 
-app.delete("/database", function (req, res) {
-  const id = req.body.id;
+app.delete("/database/:id", function (req, res) {
+  const id = req.params.id;
   database.splice(id - 1, 1);
 
   res.send("값 삭제를 성공했습니다");
