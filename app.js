@@ -5,12 +5,6 @@ const mysql = require("mysql2/promise");
 // create the connection to database
 let connection;
 
-const database = [
-  { id: 1, title: "글1" },
-  { id: 2, title: "글2" },
-  { id: 3, title: "글3" },
-];
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
