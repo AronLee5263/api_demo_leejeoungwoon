@@ -3,12 +3,7 @@ const app = express();
 const mysql = require("mysql2/promise");
 
 // create the connection to database
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "myapp",
-  password: "root",
-});
+let connection;
 
 const database = [
   { id: 1, title: "글1" },
@@ -58,7 +53,13 @@ app.delete("/database/:id", function (req, res) {
   res.send("값 삭제를 성공했습니다");
 });
 
-app.listen(3000, () => {
+app.listen(3000, async () => {
+  connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    database: "myapp",
+    password: "root",
+  });
   console.log("server On !!!!!!");
 });
 
