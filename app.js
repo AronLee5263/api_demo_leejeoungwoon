@@ -31,9 +31,11 @@ app.get("/database/:id", function (req, res) {
 
 app.post("/database", async function (req, res) {
   const { name, age, content } = req.body;
-  const [rows, fields] = await connection.execute(
-    `INSERT INTO user(name, age, content) VALUES('${name}', ${age}, '${content}')`
-  );
+  const [rows, fields] = await connection.execute(`INSERT INTO user(name, age, content) VALUES(?,?,?)`, [
+    name,
+    age,
+    content,
+  ]);
 
   res.send("값 추가가 성공 ! ");
 });
