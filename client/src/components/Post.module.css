@@ -1,12 +1,6 @@
-.container {
-  /* display: flex;
-    justify-content: center;
-    align-items: center; */
-}
-
 .post {
   margin: 3rem 0.5rem;
-  padding: 2rem;
+  padding: 1rem 2rem;
   /* background-color: #9c7eee; */
   border: 1px solid #939393fc;
   border-radius: 8px;
@@ -14,24 +8,44 @@
   animation: animate-in 1s ease-out forwards;
 }
 
+.post a {
+  text-decoration: none;
+}
+.top {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-top: -1rem;
+  margin-bottom: -0.9rem;
+}
+
 /* .post a {
     text-decoration: none;
   } */
 
+.id {
+  margin-right: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 .title {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #543280;
-  margin: 0;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
+  /* margin: 0; */
+  /* margin-bottom: 1rem; */
+}
+
+.middle {
+  /* background-color: red; */
+  display: flex;
+  justify-content: start;
+  padding: 4.5rem 0;
 }
 
 .content {
   white-space: pre-wrap;
   font-size: 1.25rem;
   margin: 0.25rem 0 0 0;
-  color: #593884;
   font-style: italic;
 }
 
@@ -44,4 +58,15 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.like_button {
+  position: absolute;
+  padding: 1rem;
+  /* background-color: red; */
+}
+
+.likes {
+  margin-left: 3rem;
+  /* background-color: purple; */
 }

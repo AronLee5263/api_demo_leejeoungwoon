@@ -1,11 +1,16 @@
 .posts {
   list-style: none;
-  max-width: 80rem;
-  margin-right: 2rem;
+  max-width: 50rem;
+  margin-left: 30%;
+  margin-right: 30%;
   /*margin: 1rem auto;
     padding: 1rem 0;
     display: flex;
     gap: 1rem;
     grid-template-columns: repeat(3, 30%);
     justify-content: center; */
+}
+
+.temp {
+  margin-top: 20rem;
 }

@@ -12,6 +12,7 @@ const SERVER_URL = "http://localhost:3000/library/content";
 
 export default function Library() {
   const [posts, setPosts] = useState([]);
+  const [newPost, setNewPost] = useState(false);
 
   useEffect(() => {
     fetch(SERVER_URL)
@@ -19,6 +20,9 @@ export default function Library() {
       .then((data) => setPosts(data));
   }, []);
 
+  function NewPostHandler() {
+    setNewPost(true);
+  }
   // useEffect(() => {
   //   async function axiosPosts() {
   //     try {
@@ -39,7 +43,14 @@ export default function Library() {
       {posts.length > 0 && (
         <ul className={classes.posts}>
           {posts.reverse().map((post) => (
-            <Post key={post.id} title={post.title} content={post.content} likes={post.likes} />
+            <Post
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              content={post.content}
+              likes={post.likes}
+              onNewPost={NewPostHandler}
+            />
           ))}
         </ul>
       )}
@@ -56,6 +67,8 @@ export default function Library() {
           <p> 내용을 추가해보세요 🙂</p>
         </div>
       )}
+
+      <div className={classes.temp}></div>
     </>
   );
 }
