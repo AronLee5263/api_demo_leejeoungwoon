@@ -1,10 +1,12 @@
 import classes from "./Library.module.css";
 import { AiOutlinePlus, AiOutlineStar, AiOutlineLineChart, AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 
+import NewPost from "./NewPost";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 import Post from "../components/Post";
+import Modal from "../components/Modal";
 
 // import { Outlet } from "react-router-dom";
 
@@ -15,6 +17,10 @@ import Post from "../components/Post";
 export default function Library() {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState(false);
+
+  const [modalOpen, setModalOpen] = useState(true);
+  const [content, setContent] = useState("");
+  const [title, setTitle] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/library/content")
@@ -41,9 +47,6 @@ export default function Library() {
       });
   }
 
-  function NewPostHandler() {
-    setNewPost(true);
-  }
   // useEffect(() => {
   //   async function axiosPosts() {
   //     try {
@@ -59,15 +62,41 @@ export default function Library() {
   //   axiosPosts();
   // }, []);
 
+  function changeContentHandler(e) {
+    setContent(e.target.value);
+  }
+
+  function changeTitleHandler(e) {
+    setTitle(e.target.value);
+  }
+
+  function NewPostHandler() {
+    setNewPost(true);
+  }
+
+  function showModalHandler() {
+    setModalOpen(true);
+  }
+
+  function closeModalHandler() {
+    setModalOpen(false);
+  }
+
   return (
     <>
       {posts.length > 0 && (
         <>
+          {modalOpen && (
+            <Modal onOpen={showModalHandler} onClose={closeModalHandler}>
+              <NewPost onContentChange={changeContentHandler} onTitleChange={changeTitleHandler} />
+            </Modal>
+          )}
+
           <button
             type="button"
             className={classes.newPostButton}
             onClick={() => {
-              setIsClickedNPB(true);
+              showModalHandler(true);
             }}
           >
             <AiOutlinePlus size={40} className={classes.newPostIcon} />
