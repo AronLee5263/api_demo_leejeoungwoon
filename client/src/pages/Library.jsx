@@ -18,7 +18,7 @@ export default function Library() {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState(false);
 
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
 
@@ -88,7 +88,11 @@ export default function Library() {
         <>
           {modalOpen && (
             <Modal onOpen={showModalHandler} onClose={closeModalHandler}>
-              <NewPost onContentChange={changeContentHandler} onTitleChange={changeTitleHandler} />
+              <NewPost
+                onContentChange={changeContentHandler}
+                onTitleChange={changeTitleHandler}
+                onCloseModal={closeModalHandler}
+              />
             </Modal>
           )}
 
