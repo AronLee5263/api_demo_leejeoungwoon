@@ -66,3 +66,14 @@
     transform: translateY(0);
   }
 }
+
+.like_button {
+  position: absolute;
+  padding: 1rem;
+  /* background-color: red; */
+}
+
+.likes {
+  margin-left: 3rem;
+  /* background-color: purple; */
+}
