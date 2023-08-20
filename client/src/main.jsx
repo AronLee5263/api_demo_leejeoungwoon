@@ -12,14 +12,18 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "/library/content",
+        element: <Library />,
+      },
+    ],
   },
-  {
-    path: "/library/content",
-    element: <Library />,
-  },
+
   {
     path: "/create-post",
     element: <NewPost />,
+    action: newPostAction,
   },
   {
     path: "/library/content/:contentId",
