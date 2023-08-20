@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <div className={classes.posts}>ddd 츌력</div>
+      <div className={classes.posts}>앱 시작 하기</div>
     </>
   );
 }
