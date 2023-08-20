@@ -14,11 +14,11 @@ export default function Post({ id, title, content, likes, onNewPost }) {
         <div className={classes.middle}>
           <p className={classes.content}>{content}</p>
         </div>
-        <div className={classes.bottom}>
-          <button onClick={onNewPost}></button>
-          <p className={classes.likes}>좋아요 {likes} 개</p>
-        </div>
       </Link>
+      <div className={classes.bottom}>
+        <button className={classes.like_button} onClick={onNewPost}></button>
+        <p className={classes.likes}>좋아요 {likes} 개</p>
+      </div>
     </li>
   );
 }
