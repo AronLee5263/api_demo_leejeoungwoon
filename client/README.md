@@ -1,3 +1,3 @@
-- npm install 
-- npm run dev 
-
+- npm install
+- npm install react-icons --save
+- npm run dev
