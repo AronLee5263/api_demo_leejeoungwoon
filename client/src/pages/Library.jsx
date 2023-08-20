@@ -8,17 +8,37 @@ import Post from "../components/Post";
 // import { Outlet } from "react-router-dom";
 
 // const SERVER_URL = "https://64637a9f7a9eead6fae801e2.mockapi.io/fakeData";
-const SERVER_URL = "http://localhost:3000/library/content";
+// const SERVER_URL = "http://localhost:3000/library/content";
+// const Like_URL = "http://localhost:3000/library/content/:contentId/like";
 
 export default function Library() {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState(false);
 
   useEffect(() => {
-    fetch(SERVER_URL)
+    fetch("http://localhost:3000/library/content")
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
+
+  function IncreaseLikeCount(id) {
+    fetch(`http://localhost:3000/library/content/${id}/like`, {
+      method: "PUT",
+    })
+      .then((response) => response.text())
+      .then(() => {
+        const updatedPosts = posts.map((post) => {
+          if (post.id === id) {
+            return { ...post, likes: post.likes + 1 };
+          }
+          return post;
+        });
+        setPosts(updatedPosts);
+      })
+      .catch((error) => {
+        console.error("좋아요 업데이트 에러:", error);
+      });
+  }
 
   function NewPostHandler() {
     setNewPost(true);
@@ -50,6 +70,7 @@ export default function Library() {
               content={post.content}
               likes={post.likes}
               onNewPost={NewPostHandler}
+              onIncreaseLike={() => IncreaseLikeCount(post.id)}
             />
           ))}
         </ul>

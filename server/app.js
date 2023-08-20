@@ -31,6 +31,13 @@ app.post("/library/content", async function (req, res) {
   res.send("값 추가가 성공 ! ");
 });
 
+app.put("/library/content/:id/like", async function (req, res) {
+  const id = req.params.id;
+  const { likes } = req.body;
+  const [rows, fields] = await connection.execute(`UPDATE posts SET likes = likes + 1 WHERE id=?`, [id]);
+  res.send("좋아요 업데이트가 성공 ! ");
+});
+
 app.put("/library/content", async function (req, res) {
   const { id, title, likes, content } = req.body;
   const [rows, fields] = await connection.execute(`UPDATE posts SET title=?, likes=?, content=? WHERE id=?`, [
