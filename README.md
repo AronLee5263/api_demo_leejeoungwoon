@@ -1,4 +1,4 @@
-# api_demo_leejeoungwoon
+# 게시판 프로젝트
 
 - client, server 각각의 README.md 가 있습니다.
 
