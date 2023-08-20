@@ -1,4 +1,5 @@
 import classes from "./Library.module.css";
+import { AiOutlinePlus, AiOutlineStar, AiOutlineLineChart, AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -61,19 +62,30 @@ export default function Library() {
   return (
     <>
       {posts.length > 0 && (
-        <ul className={classes.posts}>
-          {posts.reverse().map((post) => (
-            <Post
-              key={post.id}
-              id={post.id}
-              title={post.title}
-              content={post.content}
-              likes={post.likes}
-              onNewPost={NewPostHandler}
-              onIncreaseLike={() => IncreaseLikeCount(post.id)}
-            />
-          ))}
-        </ul>
+        <>
+          <button
+            type="button"
+            className={classes.newPostButton}
+            onClick={() => {
+              setIsClickedNPB(true);
+            }}
+          >
+            <AiOutlinePlus size={40} className={classes.newPostIcon} />
+          </button>
+          <ul className={classes.posts}>
+            {posts.reverse().map((post) => (
+              <Post
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                content={post.content}
+                likes={post.likes}
+                onNewPost={NewPostHandler}
+                onIncreaseLike={() => IncreaseLikeCount(post.id)}
+              />
+            ))}
+          </ul>
+        </>
       )}
 
       {posts.length === 0 && (

@@ -14,3 +14,30 @@
 .temp {
   margin-top: 20rem;
 }
+
+.newPostButton {
+  /* margin-right: 1rem; */
+  /* width: 2rem;
+    height: 2rem; */
+  padding: 1rem;
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  cursor: pointer;
+
+  border-radius: 50%;
+  border: none;
+
+  color: white;
+
+  background-color: var(--tomato-color);
+}
+
+.newPostButton:hover {
+  background-color: var(--tomato-color);
+}
