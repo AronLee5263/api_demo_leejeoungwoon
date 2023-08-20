@@ -2,11 +2,13 @@
 
 - client, server 각각의 README.md 가 있습니다.
 
-client : react
-server : express
-DB : MySQL
-etc : docker, powershell
-개발기간 : 3일 (8.18 ~ 8.20)
+- client : react
+- server : express
+- DB : MySQL
+- etc : docker, powershell
+- 개발기간 : 3일 (8.18 ~ 8.20)
+
+<br>
 
 < service flow >
 
