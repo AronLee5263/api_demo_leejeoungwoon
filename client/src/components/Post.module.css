@@ -12,6 +12,10 @@
   text-decoration: none;
 }
 
+.post a:visited {
+  color: inherit; /* 방문한 링크의 색상도 현재 텍스트의 색상을 유지하도록 설정 */
+}
+
 .top {
   display: flex;
   justify-content: start;
