@@ -1,12 +1,24 @@
 import classes from "./Post.module.css";
 
-export default function Post({ id, title, content, likes }) {
+import { Link } from "react-router-dom";
+
+export default function Post({ id, title, content, likes, onNewPost }) {
   return (
     <li className={classes.post}>
-      <p className={classes.id}> id: {id}</p>
-      <p className={classes.title}>{title}</p>
-      <p className={classes.content}>{content}</p>
-      <p className={classes.likes}>{likes}</p>
+      <Link to={`/library/content/${id}`}>
+        <div className={classes.top}>
+          <p className={classes.id}> {id}번</p>
+          <p className={classes.title}>{title}</p>
+        </div>
+        <hr />
+        <div className={classes.middle}>
+          <p className={classes.content}>{content}</p>
+        </div>
+        <div className={classes.bottom}>
+          <button onClick={onNewPost}></button>
+          <p className={classes.likes}>좋아요 {likes} 개</p>
+        </div>
+      </Link>
     </li>
   );
 }
