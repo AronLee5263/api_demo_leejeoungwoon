@@ -23,7 +23,7 @@ export default function Library() {
 
   function IncreaseLikeCount(id) {
     fetch(`http://localhost:3000/library/content/${id}/like`, {
-      method: "PUT",
+      method: "POST",
     })
       .then((response) => response.text())
       .then(() => {
