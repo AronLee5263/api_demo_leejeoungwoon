@@ -47,7 +47,7 @@ export default function Library() {
               key={post.id}
               id={post.id}
               title={post.title}
-              // content={post.content}
+              content={post.content}
               likes={post.likes}
               onNewPost={NewPostHandler}
             />
