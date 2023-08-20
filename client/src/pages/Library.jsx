@@ -13,6 +13,12 @@ const SERVER_URL = "http://localhost:3000/library/content";
 export default function Library() {
   const [posts, setPosts] = useState([]);
 
+  useEffect(() => {
+    fetch(SERVER_URL)
+      .then((res) => res.json())
+      .then((data) => setPosts(data));
+  }, []);
+
   // useEffect(() => {
   //   async function axiosPosts() {
   //     try {
@@ -27,12 +33,6 @@ export default function Library() {
 
   //   axiosPosts();
   // }, []);
-
-  useEffect(() => {
-    fetch(SERVER_URL)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  });
 
   return (
     <>
