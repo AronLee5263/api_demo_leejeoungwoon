@@ -16,6 +16,8 @@ import Modal from "../components/Modal";
 
 export default function Library() {
   const [posts, setPosts] = useState([]);
+  const [detailPost, setDetailPost] = useState([]);
+
   const [newPost, setNewPost] = useState(false);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,6 +27,18 @@ export default function Library() {
       .then((res) => res.json())
       .then((data) => setPosts(data.reverse()));
   }, []);
+
+  function GetDetails(id) {
+    fetch(`http://localhost:3000/library/content/${id}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => setDetailPost(data))
+
+      .catch((error) => {
+        console.error("상세 페이지 로드 에러:", error);
+      });
+  }
 
   function IncreaseLikeCount(id) {
     fetch(`http://localhost:3000/library/content/${id}/like`, {
@@ -116,6 +130,7 @@ export default function Library() {
                 onNewPost={NewPostHandler}
                 onIncreaseLike={() => IncreaseLikeCount(post.id)}
                 onDelete={() => DeletePost(post.id)}
+                onDetail={GetDetails}
               />
             ))}
           </ul>
