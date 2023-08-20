@@ -19,8 +19,6 @@ export default function Library() {
   const [newPost, setNewPost] = useState(false);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [content, setContent] = useState("");
-  const [title, setTitle] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/library/content")
@@ -62,14 +60,6 @@ export default function Library() {
   //   axiosPosts();
   // }, []);
 
-  function changeContentHandler(e) {
-    setContent(e.target.value);
-  }
-
-  function changeTitleHandler(e) {
-    setTitle(e.target.value);
-  }
-
   function NewPostHandler() {
     setNewPost(true);
   }
@@ -88,11 +78,7 @@ export default function Library() {
         <>
           {modalOpen && (
             <Modal onOpen={showModalHandler} onClose={closeModalHandler}>
-              <NewPost
-                onContentChange={changeContentHandler}
-                onTitleChange={changeTitleHandler}
-                onCloseModal={closeModalHandler}
-              />
+              <NewPost onCloseModal={closeModalHandler} onAddPost={setPosts} />
             </Modal>
           )}
 

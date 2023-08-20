@@ -28,7 +28,14 @@ app.post("/library/content", async function (req, res) {
   const { title, content } = req.body;
   const [rows, fields] = await connection.execute(`INSERT INTO posts(title, content) VALUES(?,?)`, [title, content]);
 
-  res.send("값 추가가 성공 ! ");
+  const newPost = {
+    id: rows.insertId, // 새로 생성된 게시글의 ID
+    title: title,
+    content: content,
+    likes: 0, // 좋아요 기본값
+  };
+
+  res.send(newPost);
 });
 
 app.post("/library/content/:id/like", async function (req, res) {
@@ -63,6 +70,7 @@ app.listen(3000, async () => {
     user: "root",
     database: "myapp",
     password: "root",
+    charset: "utf8mb4",
   });
   console.log("server On !!!!!!");
 });
