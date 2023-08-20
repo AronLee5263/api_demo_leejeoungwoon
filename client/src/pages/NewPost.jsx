@@ -36,7 +36,7 @@ export default function NewPost({ onCloseModal, onAddPost }) {
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // 확인용
-        onAddPost((prevPosts) => [...prevPosts, data]); // 새 게시글 추가
+        onAddPost((prevPosts) => [data, ...prevPosts]); // 새 게시글 추가
         onCloseModal(); // 모달 닫기
       })
       .catch((error) => console.error("에러:", error));
