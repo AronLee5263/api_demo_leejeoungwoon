@@ -10,6 +10,7 @@
 
 .post a {
   text-decoration: none;
+  color: inherit; /* 현재 텍스트의 색상을 유지하도록 설정 */
 }
 
 .post a:visited {
