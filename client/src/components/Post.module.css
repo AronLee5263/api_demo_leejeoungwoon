@@ -11,6 +11,7 @@
 .post a {
   text-decoration: none;
 }
+
 .top {
   display: flex;
   justify-content: start;
@@ -60,6 +61,11 @@
   }
 }
 
+.bottom {
+  display: flex;
+  margin-top: 2rem;
+  align-items: center;
+}
 .like_button {
   position: absolute;
   padding: 1rem;
@@ -69,4 +75,10 @@
 .likes {
   margin-left: 3rem;
   /* background-color: purple; */
+}
+
+.delete {
+  position: absolute;
+  right: 1rem;
+  padding: 0.1rem;
 }

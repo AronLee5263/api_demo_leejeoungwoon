@@ -23,7 +23,7 @@ export default function Library() {
   useEffect(() => {
     fetch("http://localhost:3000/library/content")
       .then((res) => res.json())
-      .then((data) => setPosts(data));
+      .then((data) => setPosts(data.reverse()));
   }, []);
 
   function IncreaseLikeCount(id) {
@@ -42,6 +42,20 @@ export default function Library() {
       })
       .catch((error) => {
         console.error("좋아요 업데이트 에러:", error);
+      });
+  }
+  function DeletePost(id) {
+    fetch(`http://localhost:3000/library/content/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.text())
+      .then(() => {
+        const updatedPosts = posts.filter((post) => post.id !== id);
+
+        setPosts(updatedPosts);
+      })
+      .catch((error) => {
+        console.error("삭제 에러:", error);
       });
   }
 
@@ -92,7 +106,7 @@ export default function Library() {
             <AiOutlinePlus size={40} className={classes.newPostIcon} />
           </button>
           <ul className={classes.posts}>
-            {posts.reverse().map((post) => (
+            {posts.map((post) => (
               <Post
                 key={post.id}
                 id={post.id}
@@ -101,6 +115,7 @@ export default function Library() {
                 likes={post.likes}
                 onNewPost={NewPostHandler}
                 onIncreaseLike={() => IncreaseLikeCount(post.id)}
+                onDelete={() => DeletePost(post.id)}
               />
             ))}
           </ul>
@@ -108,16 +123,34 @@ export default function Library() {
       )}
 
       {posts.length === 0 && (
-        <div
-          style={{
-            marginTop: "50px",
-            textAlign: "center",
-            color: "black",
-          }}
-        >
-          <h2>게시글이 없어요</h2>
-          <p> 내용을 추가해보세요 🙂</p>
-        </div>
+        <>
+          {modalOpen && (
+            <Modal onOpen={showModalHandler} onClose={closeModalHandler}>
+              <NewPost onCloseModal={closeModalHandler} onAddPost={setPosts} />
+            </Modal>
+          )}
+
+          <button
+            type="button"
+            className={classes.newPostButton}
+            onClick={() => {
+              showModalHandler(true);
+            }}
+          >
+            <AiOutlinePlus size={40} className={classes.newPostIcon} />
+          </button>
+
+          <div
+            style={{
+              marginTop: "50px",
+              textAlign: "center",
+              color: "black",
+            }}
+          >
+            <h2>게시글이 없어요</h2>
+            <p> 내용을 추가해보세요 🙂</p>
+          </div>
+        </>
       )}
 
       <div className={classes.temp}></div>

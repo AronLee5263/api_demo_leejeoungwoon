@@ -68,7 +68,7 @@ app.listen(3000, async () => {
   connection = await mysql.createConnection({
     host: "localhost",
     user: "root",
-    database: "myapp",
+    database: "myapp2",
     password: "root",
     charset: "utf8mb4",
   });
