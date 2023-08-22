@@ -56,10 +56,10 @@ DELETE /library/content/id : 특정 게시글을 삭제합니다.<br>
 
 useEffect를 사용하여 초기 게시글 목록을 가져옵니다.<br>
 
-GetDetails: 특정 게시글을 가져옵니다. <br>
-IncreaseLikeCount: 특정 게시글의 좋아요 수를 증가시킵니다.<br>
-NewPostHandler: 새 게시글을 작성합니다.<br><br>
-DeletePost: 특정 게시글을 삭제합니다.<br>
+- (GET) GetDetails: 특정 게시글을 가져옵니다. <br>
+- (POST) IncreaseLikeCount: 특정 게시글의 좋아요 수를 증가시킵니다.<br>
+- (POST) NewPostHandler: 새 게시글을 작성합니다.<br><br>
+- (DELETE) DeletePost: 특정 게시글을 삭제합니다.<br>
 
 showModalHandler: 모달을 엽니다.<br>
 closeModalHandler: 모달을 닫습니다.<br><br>
