@@ -19,7 +19,7 @@
 
 <br><br>
 
-## - server
+# - server
 
 ### API 엔드포인트 
 <br>
@@ -35,16 +35,29 @@ DELETE /library/content/id : 특정 게시글을 삭제합니다.<br>
 
 <br><br>
 
-## - client
+# - client
 
+<br>
+
+### 클라이언트 플로우 
+<br>
+
+1) 첫 진입시 App 컴포넌트 렌더링 
+2) 메인페이지 (Library 컴포넌트) 에서 포스팅 된 게시물 목록 렌더링
+3) 메인페이지에서 추가할 게시물 컴포넌트 생성 (NewPost 컴포넌트)
+4) 메인페이지에서 게시물 된 좋아요 버튼 클릭시 좋아요 숫자 1 증가
+5) 메인페이지에서 게시물 클릭시 해당 포스트 상세 페이지로 이동
+6) 상세페이지에서 (PostDatail 컴포넌트) 좋아요 버튼 클릭시 좋아요 숫자 1 증가
+
+<br><br>
 
 ### Library 컴포넌트 
 <br>
 
 useEffect를 사용하여 초기 게시글 목록을 가져옵니다.<br>
 
-GetDetails: 특정 게시글을 가져옵니다. <br><br>
-IncreaseLikeCount: 특정 게시글의 좋아요 수를 증가시킵니다.<br><br>
+GetDetails: 특정 게시글을 가져옵니다. <br>
+IncreaseLikeCount: 특정 게시글의 좋아요 수를 증가시킵니다.<br>
 NewPostHandler: 새 게시글을 작성합니다.<br><br>
 DeletePost: 특정 게시글을 삭제합니다.<br>
 
